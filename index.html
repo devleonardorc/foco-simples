@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foco Simples</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="sidebar" aria-label="Resumo do foco">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <h1>Foco Simples</h1>
+          <p>Organize estudos, tarefas e pequenas metas.</p>
+        </div>
+      </div>
+
+      <div class="progress-panel">
+        <div class="progress-header">
+          <span>Progresso</span>
+          <strong id="progressText">0%</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressHint">Adicione sua primeira tarefa para começar.</p>
+      </div>
+
+      <div class="stats-grid" aria-label="Estatísticas">
+        <article>
+          <span id="totalCount">0</span>
+          <p>Total</p>
+        </article>
+        <article>
+          <span id="doneCount">0</span>
+          <p>Feitas</p>
+        </article>
+        <article>
+          <span id="lateCount">0</span>
+          <p>Atrasadas</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Lista de tarefas">
+      <header class="workspace-header">
+        <div>
+          <p class="eyebrow">Meu plano</p>
+          <h2>O que precisa de atenção?</h2>
+        </div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+          <span aria-hidden="true">◐</span>
+        </button>
+      </header>
+
+      <form class="task-form" id="taskForm">
+        <label>
+          <span>Tarefa</span>
+          <input id="taskTitle" type="text" placeholder="Ex: estudar JavaScript por 30 minutos" maxlength="80" required>
+        </label>
+
+        <div class="form-row">
+          <label>
+            <span>Categoria</span>
+            <select id="taskCategory">
+              <option value="Estudo">Estudo</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Pessoal">Pessoal</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Prazo</span>
+            <input id="taskDate" type="date" required>
+          </label>
+        </div>
+
+        <button class="primary-button" type="submit">
+          <span aria-hidden="true">+</span>
+          Adicionar tarefa
+        </button>
+      </form>
+
+      <div class="toolbar" aria-label="Filtros de tarefas">
+        <button class="filter-button active" type="button" data-filter="all">Todas</button>
+        <button class="filter-button" type="button" data-filter="today">Hoje</button>
+        <button class="filter-button" type="button" data-filter="week">Semana</button>
+        <button class="filter-button" type="button" data-filter="open">Pendentes</button>
+        <button class="filter-button" type="button" data-filter="done">Concluídas</button>
+      </div>
+
+      <section class="task-list" id="taskList" aria-live="polite"></section>
+
+      <section class="empty-state" id="emptyState">
+        <div aria-hidden="true">✓</div>
+        <h3>Nada por aqui</h3>
+        <p>Adicione uma tarefa ou altere o filtro selecionado.</p>
+      </section>
+    </section>
+  </main>
+
+  <template id="taskTemplate">
+    <article class="task-item">
+      <button class="check-button" type="button" aria-label="Marcar tarefa"></button>
+      <div class="task-content">
+        <div class="task-topline">
+          <h3></h3>
+          <span class="category-pill"></span>
+        </div>
+        <p class="task-meta"></p>
+      </div>
+      <button class="delete-button" type="button" aria-label="Excluir tarefa">×</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
